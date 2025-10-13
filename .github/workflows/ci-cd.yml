@@ -23,8 +23,11 @@ jobs:
           distribution: 'temurin'
           java-version: '21'
 
+      - name: Dar permissão de execução ao Maven Wrapper
+        run: chmod +x mvnw
+
       - name: Build do projeto e execução dos testes
-        run: ./mvnw clean package  # remove o -DskipTests para rodar os testes
+        run: ./mvnw clean package  # remove -DskipTests se quiser rodar os testes
 
       - name: Mostrar JAR gerado
         run: ls -lh target/
@@ -37,6 +40,9 @@ jobs:
     steps:
       - name: Checkout do repositório
         uses: actions/checkout@v3
+
+      - name: Dar permissão de execução ao Maven Wrapper
+        run: chmod +x mvnw
 
       - name: Build da imagem Docker
         run: docker build -t juhdias/biopure:latest .
