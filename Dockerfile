@@ -4,6 +4,11 @@ WORKDIR /app
 COPY mvnw pom.xml ./
 COPY .mvn .mvn
 COPY src src
+
+# Dar permissão de execução ao mvnw
+RUN chmod +x mvnw
+
+# Rodar build
 RUN ./mvnw clean package -DskipTests
 
 # Stage 2: final image
