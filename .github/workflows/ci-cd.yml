@@ -33,7 +33,7 @@ jobs:
 
       - name: Build Maven
         # Build sem rodar testes
-        run: mvn clean install -DskipTests
+        run: mvn clean package -DskipTests
 
       - name: Run Tests (H2 Profile)
         # Rodar testes usando profile test para H2
