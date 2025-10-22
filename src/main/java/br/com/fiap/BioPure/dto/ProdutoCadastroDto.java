@@ -2,23 +2,22 @@ package br.com.fiap.BioPure.dto;
 
 import jakarta.validation.constraints.*;
 
-import java.time.LocalDate;
-
 public record ProdutoCadastroDto(
+
         Long id,
 
-        @NotBlank(message = "Nome do produto é obrigatório!")
+        @NotBlank(message = "O nome do produto é obrigatório!")
         String nome,
 
-        @NotBlank(message = "A Descrição é obrigatório!")
+        @NotBlank(message = "A descrição é obrigatória!")
         String descricao,
 
         @NotNull(message = "O preço é obrigatório!")
         @DecimalMin(value = "0.0", inclusive = false, message = "O preço deve ser maior que zero!")
-        double preco,
+        Double preco,  // 🔹 Corrigido: de 'double' (primitivo) para 'Double' (objeto)
 
-        @NotNull(message = "O tempo de degradação é obrigatório!")
+        @NotBlank(message = "O tempo de degradação é obrigatório!") // 🔹 Corrigido: era @NotNull
         String tempoDegradacao
 ) {
-
 }
+

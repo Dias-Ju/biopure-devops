@@ -1,6 +1,7 @@
 package br.com.fiap.BioPure.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -19,6 +20,8 @@ public class Produto {
             allocationSize = 1
     )
     private Long id;
+
+    @NotBlank(message = "O nome é obrigatório")
     private String nome;
     private String descricao;
     private String tempoDegradacao;

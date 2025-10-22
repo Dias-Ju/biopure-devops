@@ -11,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -39,22 +38,21 @@ public class ProdutoController {
         return service.buscarPorId(id);
     }
 
+    @GetMapping("/produtos/nome/{nome}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Produto> buscarPeloNome(@PathVariable String nome) {
+        return service.buscarPeloNome(nome);
+    }
+
+    @PutMapping("/produtos")
+    @ResponseStatus(HttpStatus.OK)
+    public Produto atualizar(@RequestBody Produto produto) {
+        return service.atualizar(produto);
+    }
 
     @DeleteMapping("/produtos/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluir(@PathVariable Long id) {
         service.excluir(id);
-    }
-
-    @PutMapping("/produtos")
-    @ResponseStatus(HttpStatus.OK)
-    public Produto atualizar(@RequestBody Produto produtos) {
-        return service.atualizar(produtos);
-    }
-
-    @GetMapping("/produtos/nome/{nome}")
-    @ResponseStatus(HttpStatus.OK)
-    public Produto buscarPeloNome(@PathVariable String nome) {
-        return service.buscarPeloNome(nome);
     }
 }

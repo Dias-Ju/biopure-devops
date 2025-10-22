@@ -4,13 +4,11 @@ import br.com.fiap.BioPure.model.Usuario;
 import br.com.fiap.BioPure.model.UsuarioRole;
 
 public record UsuarioExibicaoDto(
-        Long usuarioId,
+        Long id,
         String nome,
         String email,
         UsuarioRole role
 ) {
-
-
     public UsuarioExibicaoDto(Usuario usuarioSalvo) {
         this(
                 usuarioSalvo.getUsuarioId(),
@@ -20,3 +18,4 @@ public record UsuarioExibicaoDto(
         );
     }
 }
+

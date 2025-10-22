@@ -1,0 +1,47 @@
+name: CI - Testes Automatizados (BioPure)
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  pull_request:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build backend
+        working-directory: ./BioPure
+        run: mvn -B clean package -DskipTests
+
+      - name: Start backend server
+        working-directory: ./BioPure
+        run: |
+          nohup mvn spring-boot:run > backend.log 2>&1 &
+          echo "Aguardando o backend iniciar..."
+          sleep 25  # espera 25 segundos para o servidor subir completamente
+          curl -f http://localhost:8080/actuator/health || (echo "Backend não iniciou!" && cat backend.log && exit 1)
+
+      - name: Run automated tests
+        working-directory: ./BioPureTests
+        run: mvn -B test -Dapi.base=http://localhost:8080
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            BioPureTests/target/
+            BioPure/backend.log

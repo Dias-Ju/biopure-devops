@@ -29,7 +29,7 @@ public class AuthController {
     @Autowired
     private TokenService tokenService;
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid LoginDto loginDto){
         UsernamePasswordAuthenticationToken usernamePassword = new UsernamePasswordAuthenticationToken
                 (loginDto.email(), loginDto.senha());

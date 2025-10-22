@@ -6,12 +6,11 @@ import jakarta.validation.constraints.Size;
 
 public record LoginDto(
 
-        @NotBlank(message = "O e-mail do usuário é obrigatório!")
-        @Email(message = "O e-mail do usuário não é válido!")
+        @NotBlank(message = "O e-mail é obrigatório!")
+        @Email(message = "E-mail inválido!")
         String email,
 
-        @NotBlank(message = "A senha do usuário é obrigatório!")
-        @Size(min = 6, max = 20, message = "A senha deve conter entre 6 e 20 caracteres!")
+        @NotBlank(message = "A senha é obrigatória!")
+        @Size(min = 6, message = "A senha deve ter pelo menos 6 caracteres.")
         String senha
-) {
-}
+) { }
