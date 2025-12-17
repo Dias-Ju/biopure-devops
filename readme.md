@@ -1,6 +1,6 @@
 # Projeto - BioPure
 
-O BioPure é uma aplicação robusta desenvolvida em Java com Spring Boot, projetada para [**Adicione aqui uma breve descrição do objetivo do projeto, por exemplo: "gerenciar e monitorar dados de qualidade da água."**]. A arquitetura do projeto foi pensada para ser escalável, segura e de fácil manutenção, utilizando práticas modernas de desenvolvimento e DevOps.
+BioPure é uma aplicação backend desenvolvida em Java com Spring Boot, criada para o controle de rastreabilidade de produtos biodegradáveis. O sistema permite o cadastro, consulta e gerenciamento de itens sustentáveis, possibilitando acompanhar informações importantes ao longo do ciclo do produto.
 
 ## Como executar localmente com Docker
 
